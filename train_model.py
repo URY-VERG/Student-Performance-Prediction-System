@@ -37,3 +37,10 @@ def main():
     print(json.dumps(scores,indent=2))
     print("Saved student_models.joblib and model_metrics.json")
 if __name__=="__main__": main()
+study_hours_per_day
+attendance_percent
+previous_score
+assignment_average
+sleep_hours
+class_participation
+final_score

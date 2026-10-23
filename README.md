@@ -1,15 +1,19 @@
 # Student Performance Prediction System — Advanced Version
 
 ## Features
-- Dashboard with dataset KPIs and charts
+- Premium Student Performance Intelligence dashboard with saved-prediction KPIs, filters, model metrics, activity, and clearly labeled synthetic training data
 - Individual student prediction and local SQLite record storage
-- Search, view, delete and CSV export of saved student records
-- Batch predictions from an uploaded CSV and downloadable results
+- Search, filter, paginate, view/edit, duplicate-ID checks, confirmed delete, and CSV export of saved student records
+- Batch CSV preview, validation, missing-value review, predictions, summary statistics, and downloadable results
 - Three ML regressors: Linear Regression, Decision Tree, Random Forest
 - Model comparison using MAE, RMSE, R²
-- Downloadable per-student PDF report
-- At-risk/support flag based on configurable demonstration thresholds
-- Methodology, limitations and dataset preview
+- College Result Analysis for Excel/CSV, supported two-header workbook parsing, column mapping, summaries, subject analysis, PDF/CSV exports
+- Configurable support-risk review using available saved predictions
+- Reports center for student, batch, college, and model exports
+- Downloadable per-student PDF report and linear-model feature contribution explanation
+- Settings, methodology, responsible-use notes, and dataset preview
+
+The application loads the existing `student_models.joblib`, `model_metrics.json`, and `students.db`; it does not retrain models automatically on app startup. To intentionally retrain, run `python train_model.py`.
 
 ## Dataset caveat
 The included `student_performance.csv` is synthetic demonstration data, not real student data. Replace it with a suitable public or approved dataset before making real-world claims. Predictions are estimates, not a substitute for educator judgement.
@@ -28,17 +32,20 @@ The included `student_performance.csv` is synthetic demonstration data, not real
    ```powershell
    python -m pip install -r requirements.txt
    ```
-8. Retrain all models:
-   ```powershell
-   python train_model.py
-   ```
+8. Keep the existing model files and database; the app does not retrain on launch. Only if you intentionally want to retrain, run `python train_model.py` first.
 9. Run the app:
    ```powershell
    python -m streamlit run app.py
    ```
 10. Open `http://localhost:8501`.
 
-The app creates `students.db` automatically for locally saved predictions. The training script creates `student_models.joblib` and updates `model_metrics.json`.
+Run the app from the project folder with:
+
+```powershell
+python -m streamlit run app.py
+```
+
+If missing, the app creates the `students.db` table without deleting existing records. The training script creates `student_models.joblib` and updates `model_metrics.json` when intentionally run.
 
 ## Batch CSV format
 Required columns:
